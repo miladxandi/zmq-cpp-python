@@ -1,0 +1,9 @@
+services:
+  server:
+    build: ./server
+    network_mode: host
+  client:
+    build: ./client
+    network_mode: host
+    depends_on:
+      - server
