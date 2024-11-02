@@ -1,2 +1,7 @@
 .idea/
 /client/build/
+/client/.ninja_deps
+/client/.ninja_log
+/client/build.ninja
+/client/CMakeCache.txt
+/client/zmq_client

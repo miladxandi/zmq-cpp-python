@@ -1,0 +1,7 @@
+# ninja log v5
+94	798	1730514790490835200	CMakeFiles/zmq_client.dir/libraries/security.cpp.o	3e5835a565c88c5e
+96	1919	1730514791606622100	CMakeFiles/zmq_client.dir/libraries/command.cpp.o	4605b8a3d289eea8
+92	22441	1730514812179186300	CMakeFiles/zmq_client.dir/main.cpp.o	5054df19b2d9d80f
+22572	24458	1730514814189886100	zmq_client	51b99a15810d82a7
+120	22271	1730515091591357000	CMakeFiles/zmq_client.dir/main.cpp.o	5054df19b2d9d80f
+22281	24151	1730515093466318800	zmq_client	51b99a15810d82a7
