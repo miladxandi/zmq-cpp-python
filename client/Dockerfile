@@ -19,10 +19,11 @@ COPY . .
 RUN conan profile detect && conan install . --build=missing -s compiler=gcc -s compiler.version=11 -s compiler.libcxx=libstdc++11 -s compiler.cppstd=17
 
 # کامپایل برنامه C++
-RUN cmake -G Ninja -Dzmqpp_DIR=build/Release/generators -DZeroMQ_DIR=build/Release/generators -Dlibsodium_DIR=build/Release/generators -DCMAKE_BUILD_TYPE=Release .
+RUN cmake -G Ninja -Dzmqpp_DIR=build/Release/generators -DCrow_DIR=build/Release/generators -Dasio_DIR=build/Release/generators  -DZeroMQ_DIR=build/Release/generators -Dnlohmann_json_DIR=build/Release/generators -Dlibsodium_DIR=build/Release/generators -DCMAKE_BUILD_TYPE=Release .
 
 RUN cmake --build .
 
 ## اجرای کلاینت
-#CMD ["./zmq_client","{\"command_type\":\"os\",\"command_name\":\"ping\",\"parameters\":[\"google.com\",\"-c\",\"2\"]}"]
-CMD ["./zmq_client","{\"command_type\":\"compute\",\"expression\":\"( 2 + 2 ) * 10\"}"]
+CMD ["./zmq_client"]
+#"{\"command_type\":\"os\",\"command_name\":\"ping\",\"parameters\":[\"google.com\",\"-c\",\"2\"]}"]
+#["./zmq_client","{\"command_type\":\"compute\",\"expression\":\"( 2 + 2 ) * 10\"}"]

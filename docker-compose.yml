@@ -1,9 +1,19 @@
 services:
   server:
     build: ./server
-    network_mode: host
+    networks:
+      - zmq_net
+    ports:
+      - "5510:5510"
   client:
     build: ./client
-    network_mode: host
+    networks:
+      - zmq_net
+    ports:
+      - "8080:8080"
     depends_on:
       - server
+
+networks:
+  zmq_net:
+    driver: bridge

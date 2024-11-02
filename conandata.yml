@@ -2,7 +2,7 @@
 # To keep your changes, remove these comment lines, but the plugin won't be able to modify your requirements
 
 requirements:
-  - "crowcpp-crow/1.2.0"
-  - "asio/1.29.0"
   - "zmqpp/4.2.0"
+  - "crowcpp-crow/1.2.0"
+  - "zmq/4.2.0"
   - "nlohmann_json/3.2.0"

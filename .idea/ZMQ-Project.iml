@@ -11,4 +11,11 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Python 3.9 interpreter library" level="application" />
   </component>
+  <component name="PyNamespacePackagesService">
+    <option name="namespacePackageFolders">
+      <list>
+        <option value="$MODULE_DIR$/client/libraries" />
+      </list>
+    </option>
+  </component>
 </module>
