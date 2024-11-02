@@ -103,5 +103,7 @@ docker build --tag "Client" .
 - Downloading libraries: Conan is dependency manager for C++ and it restricted Iranians even with Shecan or 403.online, please use VPN (not proxies) with TUN Mode (system-wide VPN) enabled
 - Build errors: We cannot build the client code on Windows OS machines because of libzmq3 is a Linux-dependent lib
 - Run errors: The entire client project cannot run on some Arm-64 arch devices.
+- Compiler errors: When running the client build process maybe it throws and exception about building file with another compiler! do not worry and just add`zmq_client`into your [CMakeLists.txt](client%2FCMakeLists.txt) like this line:
+```add_executable(zmq_client main.cpp libraries/security.cpp libraries/command.cpp)```
 
 Any other bugs? reach me at [miladxandi@icloud.com](mailto:miladxandi@icloud.com)
