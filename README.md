@@ -40,7 +40,6 @@ http://localhost:8080/execute
 ## Server:
 - Language: Python
 - Versions: 3.9 - 3.12
-- Cmake: 3.26.6
 - OS: Ubuntu 22.04
 - Packages:
   - "annotated-types/0.7.0"
