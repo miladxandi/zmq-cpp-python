@@ -21,7 +21,7 @@ int main() {
     crow::SimpleApp app;
 
     ofstream logFile("client.log", ios_base::app);  // باز کردن فایل لاگ در حالت append
-    const string endpoint = "tcp://localhost:5510";
+    const string endpoint = "tcp://server:5510";
 
     CROW_ROUTE(app, "/execute").methods("POST"_method)([&logFile,endpoint](const crow::request& req) {
 

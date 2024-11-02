@@ -14,7 +14,7 @@ find_package(nlohmann_json 3.2.0 REQUIRED)
 
 
 # اضافه کردن اجرایی
-add_executable(zmq_client main.cpp libraries/security.cpp libraries/command.cpp)
+add_executable(main.cpp libraries/security.cpp libraries/command.cpp)
 
 # لینک کردن کتابخانه‌ها
 target_link_libraries(zmq_client asio::asio zmqpp::zmqpp libsodium::libsodium nlohmann_json::nlohmann_json)  # فرض بر اینه که از zmqpp و zmq استفاده می‌کنید
