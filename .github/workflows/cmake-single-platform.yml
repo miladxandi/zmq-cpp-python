@@ -55,11 +55,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
+      - uses: xresloader/upload-to-github-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          working-directory: ./client
-          upload_url: ${{ steps.create_release.outputs.upload_url }}  # گرفتن `upload_url` از مرحله قبلی
-          asset_path: ./zmq_client
-          asset_name: zmq_client
-          asset_content_type: application/octet-stream
+          entrypoint: ./client
+          file: zmq_client
+          tags: true
+          draft: true
