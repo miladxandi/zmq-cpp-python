@@ -1,5 +1,4 @@
 # ZeroMQ Project (C++ & Python)
-![Check](https://badgen.net/github/checks/miladxandi/zmq-cpp-python)
 ![Release](https://badgen.net/github/release/miladxandi/zmq-cpp-python)
 ![Releases](https://badgen.net/github/releases/miladxandi/zmq-cpp-python)
 
