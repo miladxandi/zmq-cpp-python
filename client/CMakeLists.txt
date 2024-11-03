@@ -5,8 +5,8 @@ project(zmq_client)
 set(CMAKE_CXX_STANDARD 17)
 
 # پیدا کردن پکیج zmqpp
-find_package(crow REQUIRED)
-find_package(asio REQUIRED)
+find_package(Crow REQUIRED PATHS ./build/Release/generators/)
+find_package(asio REQUIRED )
 find_package(zmqpp REQUIRED)
 find_package(ZeroMQ REQUIRED)
 find_package(libsodium REQUIRED)

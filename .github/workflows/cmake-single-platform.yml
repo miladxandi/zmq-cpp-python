@@ -36,11 +36,16 @@ jobs:
           sudo wget https://github.com/conan-io/conan/releases/download/2.8.0/conan-2.8.0-amd64.deb && sudo dpkg -i conan-2.8.0-amd64.deb
           sudo conan profile detect && sudo conan install . --build=missing -s compiler=gcc -s compiler.version=11 -s compiler.libcxx=libstdc++11 -s compiler.cppstd=17
           
+      - name: Listing
+        working-directory: ./client
+        run: |
+          cd build/Release/generators
+          sudo ls
 
       - name: Build with Cmake
         working-directory: ./client
         run: |
-          sudo cmake -G Ninja -DCMAKE_PREFIX_PATH=./build/Release/generators  -DCMAKE_BUILD_TYPE=Release .
+          sudo cmake -G Ninja -DCMAKE_PREFIX_PATH=build/Release/generators  -DCMAKE_BUILD_TYPE=Release .
           sudo cmake --build .
 
       - name: Create Release
