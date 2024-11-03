@@ -33,8 +33,8 @@ jobs:
 
       - name: Download Conan & reqs
         run: |
-          sudo wget https://github.com/conan-io/conan/releases/download/2.8.0/conan-2.8.0-amd64.deb && dpkg -i conan-2.8.0-amd64.deb
-          sudo conan profile detect && conan install . --build=missing -s compiler=gcc -s compiler.version=11 -s compiler.libcxx=libstdc++11 -s compiler.cppstd=17
+          sudo wget https://github.com/conan-io/conan/releases/download/2.8.0/conan-2.8.0-amd64.deb && sudo dpkg -i conan-2.8.0-amd64.deb
+          sudo conan profile detect && sudo conan install . --build=missing -s compiler=gcc -s compiler.version=11 -s compiler.libcxx=libstdc++11 -s compiler.cppstd=17
           
 
       - name: Build with Cmake
