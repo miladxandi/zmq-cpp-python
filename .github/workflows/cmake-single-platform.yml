@@ -35,20 +35,16 @@ jobs:
           docker rm extract-container
 
       - name: Create Release
-        id: create_release
-        uses: actions/github-script@v6
+        uses: actions/create-release@v1
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const tag = context.ref.replace('refs/tags/', ''); // فقط نام تگ رو بگیر
-            const { data: release } = await github.repos.createRelease({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              tag_name: tag, // استفاده از نام خالص تگ
-              name: tag,
-              body: 'Automatically created release for version ' + tag,
-            });
-            return release.upload_url;
+          tag_name: ${{ github.ref_name }} # گرفتن نام تگ بدون refs/tags/
+          release_name: ${{ github.ref_name }}
+          body: 'Automatically created release for version ${{ github.ref_name }}'
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
