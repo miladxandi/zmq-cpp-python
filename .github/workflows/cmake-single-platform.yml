@@ -38,6 +38,7 @@ jobs:
           
 
       - name: Build with Cmake
+        working-directory: ./client
         run: |
           sudo cmake -G Ninja -Dzmqpp_DIR=build/Release/generators -DCrow_DIR=build/Release/generators -Dasio_DIR=build/Release/generators  -DZeroMQ_DIR=build/Release/generators -Dnlohmann_json_DIR=build/Release/generators -Dlibsodium_DIR=build/Release/generators -DCMAKE_BUILD_TYPE=Release .
           sudo cmake --build .
