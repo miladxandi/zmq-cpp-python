@@ -43,16 +43,16 @@ jobs:
           sudo cmake -G Ninja -DCMAKE_PREFIX_PATH=build/Release/generators  -DCMAKE_BUILD_TYPE=Release .
           sudo cmake --build .
 
-      - name: Create Release
-        uses: actions/create-release@v1
-        with:
-          tag_name: ${{ github.ref_name }} # گرفتن نام تگ بدون refs/tags/
-          release_name: ${{ github.ref_name }}
-          body: 'Automatically created release for version ${{ github.ref_name }}'
-          draft: false
-          prerelease: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Create Release
+#        uses: actions/create-release@v1
+#        with:
+#          tag_name: ${{ github.ref_name }} # گرفتن نام تگ بدون refs/tags/
+#          release_name: ${{ github.ref_name }}
+#          body: 'Automatically created release for version ${{ github.ref_name }}'
+#          draft: false
+#          prerelease: false
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
       - uses: xresloader/upload-to-github-release@v1
@@ -60,6 +60,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           entrypoint: ./client
-          file: zmq_client
+          file: "zmq_client"
           tags: true
           draft: true
