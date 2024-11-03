@@ -3,7 +3,7 @@ name: Build and Release
 on:
   push:
     tags:
-      - 'v*.*.*'  # این workflow برای هر نسخه تگ شده اجرا می‌شود
+      - '*.*.*.*'
   workflow_dispatch:
 
 jobs:
