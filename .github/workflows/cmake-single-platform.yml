@@ -15,24 +15,34 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Apply dynamic build changes
+        working-directory: /client
         run: |
           # اعمال تغییرات موقت در فایل main.cpp پیش از بیلد
           sed -i 's|tcp://server:5510|tcp://localhost:5510|g' client/main.cpp
           sed -i 's|app.port(8080).multithreaded().run();|app.bindaddr("127.0.0.1").port(8080).multithreaded().run();|g' client/main.cpp
 
-      - name: Build Docker image
+      - name: Install dependencies
         run: |
-          # بیلد پروژه با استفاده از Dockerfile موجود در پوشه client
-          docker build -t my-docker-image ./client
+            apt-get update && apt-get install -y \
+            build-essential \
+            cmake \
+            libzmq3-dev \
+            g++ \
+            ninja-build \
+            && rm -rf /var/lib/apt/lists/*
 
-      - name: Extract binary from Docker
+      - name: Download Conan & reqs
+        working-directory: /client
+        run: |
+          wget https://github.com/conan-io/conan/releases/download/2.8.0/conan-2.8.0-amd64.deb && dpkg -i conan-2.8.0-amd64.deb
+          conan profile detect && conan install . --build=missing -s compiler=gcc -s compiler.version=11 -s compiler.libcxx=libstdc++11 -s compiler.cppstd=17
+          
+
+      - name: Build with Cmake
         # فایل باینری ساخته شده را از کانتینر Docker بیرون می‌کشد
         run: |
-          # اجرای کانتینر برای ساخت فایل اجرایی
-          docker create --name extract-container my-docker-image
-          # کپی کردن فایل اجرایی به سیستم Actions
-          docker cp extract-container:/srv/app/zmq_client ./zmq_client
-          docker rm extract-container
+          cmake -G Ninja -Dzmqpp_DIR=build/Release/generators -DCrow_DIR=build/Release/generators -Dasio_DIR=build/Release/generators  -DZeroMQ_DIR=build/Release/generators -Dnlohmann_json_DIR=build/Release/generators -Dlibsodium_DIR=build/Release/generators -DCMAKE_BUILD_TYPE=Release .
+          cmake --build .
 
       - name: Create Release
         uses: actions/create-release@v1
