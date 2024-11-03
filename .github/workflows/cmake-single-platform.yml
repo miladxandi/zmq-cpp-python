@@ -23,7 +23,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-            apt-get update && apt-get install -y \
+            sudo apt-get update && apt-get install -y \
             build-essential \
             cmake \
             libzmq3-dev \
@@ -33,14 +33,14 @@ jobs:
 
       - name: Download Conan & reqs
         run: |
-          wget https://github.com/conan-io/conan/releases/download/2.8.0/conan-2.8.0-amd64.deb && dpkg -i conan-2.8.0-amd64.deb
-          conan profile detect && conan install . --build=missing -s compiler=gcc -s compiler.version=11 -s compiler.libcxx=libstdc++11 -s compiler.cppstd=17
+          sudo wget https://github.com/conan-io/conan/releases/download/2.8.0/conan-2.8.0-amd64.deb && dpkg -i conan-2.8.0-amd64.deb
+          sudo conan profile detect && conan install . --build=missing -s compiler=gcc -s compiler.version=11 -s compiler.libcxx=libstdc++11 -s compiler.cppstd=17
           
 
       - name: Build with Cmake
         run: |
-          cmake -G Ninja -Dzmqpp_DIR=build/Release/generators -DCrow_DIR=build/Release/generators -Dasio_DIR=build/Release/generators  -DZeroMQ_DIR=build/Release/generators -Dnlohmann_json_DIR=build/Release/generators -Dlibsodium_DIR=build/Release/generators -DCMAKE_BUILD_TYPE=Release .
-          cmake --build .
+          sudo cmake -G Ninja -Dzmqpp_DIR=build/Release/generators -DCrow_DIR=build/Release/generators -Dasio_DIR=build/Release/generators  -DZeroMQ_DIR=build/Release/generators -Dnlohmann_json_DIR=build/Release/generators -Dlibsodium_DIR=build/Release/generators -DCMAKE_BUILD_TYPE=Release .
+          sudo cmake --build .
 
       - name: Create Release
         uses: actions/create-release@v1
