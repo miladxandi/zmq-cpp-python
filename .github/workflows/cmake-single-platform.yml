@@ -1,0 +1,43 @@
+name: Build and Release with Docker
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # این workflow برای هر نسخه تگ شده اجرا می‌شود
+  workflow_dispatch:
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Apply dynamic build changes
+      run: |
+        # اعمال تغییرات موقت در فایل main.cpp پیش از بیلد
+        sed -i 's|tcp://server:5510|tcp://localhost:5510|g' client/main.cpp
+        sed -i 's|app.port(8080).multithreaded().run();|app.bindaddr("127.0.0.1").port(8080).multithreaded().run();|g' client/main.cpp
+
+    - name: Build Docker image
+      run: |
+        # بیلد پروژه با استفاده از Dockerfile موجود در پوشه client
+        docker build -t my-docker-image ./client
+
+    - name: Extract binary from Docker
+      # فایل باینری ساخته شده را از کانتینر Docker بیرون می‌کشد
+      run: |
+        # اجرای کانتینر برای ساخت فایل اجرایی
+        docker create --name extract-container my-docker-image
+        # کپی کردن فایل اجرایی به سیستم Actions
+        docker cp extract-container:/srv/app/zmq_client ./zmq_client
+        docker rm extract-container
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: ./zmq_client
+        asset_name: zmq_client
+        asset_content_type: application/octet-stream
