@@ -18,8 +18,8 @@ jobs:
         working-directory: ./client
         run: |
           # اعمال تغییرات موقت در فایل main.cpp پیش از بیلد
-          sed -i 's|tcp://server:5510|tcp://localhost:5510|g' client/main.cpp
-          sed -i 's|app.port(8080).multithreaded().run();|app.bindaddr("127.0.0.1").port(8080).multithreaded().run();|g' client/main.cpp
+          sed -i 's|tcp://server:5510|tcp://localhost:5510|g' main.cpp
+          sed -i 's|app.port(8080).multithreaded().run();|app.bindaddr("127.0.0.1").port(8080).multithreaded().run();|g' main.cpp
 
       - name: Install dependencies
         run: |
@@ -32,7 +32,6 @@ jobs:
             && rm -rf /var/lib/apt/lists/*
 
       - name: Download Conan & reqs
-        working-directory: /client
         run: |
           wget https://github.com/conan-io/conan/releases/download/2.8.0/conan-2.8.0-amd64.deb && dpkg -i conan-2.8.0-amd64.deb
           conan profile detect && conan install . --build=missing -s compiler=gcc -s compiler.version=11 -s compiler.libcxx=libstdc++11 -s compiler.cppstd=17
