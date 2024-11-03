@@ -1,5 +1,7 @@
 # ZeroMQ Project (C++ & Python)
-[![Build and Release with Docker](https://github.com/miladxandi/zmq-cpp-python/actions/workflows/cmake-single-platform.yml/badge.svg?branch=main)](https://github.com/miladxandi/zmq-cpp-python/actions/workflows/cmake-single-platform.yml)
+![Check](https://badgen.net/github/checks/miladxandi/zmq-cpp-python)
+![Release](https://badgen.net/github/release/miladxandi/zmq-cpp-python)
+![Releases](https://badgen.net/github/releases/miladxandi/zmq-cpp-python)
 
 [Read about server](#server) - [Read about client](#client)
 
