@@ -40,7 +40,7 @@ jobs:
       - name: Build with Cmake
         working-directory: ./client
         run: |
-          sudo cmake -G Ninja -DCMAKE_PREFIX_PATH=build/Release/generators  -DCMAKE_BUILD_TYPE=Release .
+          sudo cmake -G Ninja -DCMAKE_PREFIX_PATH=./build/Release/generators  -DCMAKE_BUILD_TYPE=Release .
           sudo cmake --build .
 
       - name: Create Release
