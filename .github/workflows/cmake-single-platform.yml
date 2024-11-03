@@ -39,7 +39,6 @@ jobs:
       - name: Listing
         working-directory: ./client
         run: |
-          cd build/Release/generators
           sudo ls
 
       - name: Build with Cmake
