@@ -40,7 +40,7 @@ jobs:
         working-directory: ./client
         run: |
           sudo ls
-          sudo cp . /srv/app/client
+          sudo pwd
 
       - name: Build with Cmake
         working-directory: ./client
